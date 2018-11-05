@@ -25,7 +25,7 @@ class Facultys(models.Model):
 class Semester_1(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201,unique=True)
-    professer_name = models.OneToOneField(Facultys)
+    professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
 
 class Students(models.Model):
     name = models.CharField(max_length=200)
@@ -51,49 +51,49 @@ class Students(models.Model):
 class Semester_2(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    professerr_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default="aag001")
+    professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default='aag001')
     def __str__(self):
         return self.subject_code
 
 class Semester_3(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    professerr_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default="aag001")
+    professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
 
 class Semester_4(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    professerr_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default="aag001")
+    professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
         
 class Semester_5(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    professerr_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default="aag001")
+    professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
         
 class Semester_6(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    professerr_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default="aag001")
+    professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
         
 class Semester_7(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    professerr_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default="aag001")
+    professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
         
 class Semester_8(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    professerr_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default="aag001")
+    professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
         

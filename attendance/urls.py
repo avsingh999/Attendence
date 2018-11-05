@@ -20,6 +20,7 @@ app_name = 'attendance'
 urlpatterns = [
     url(r'^student_profile/(?P<slug>.*)/$', views.student_profile, name="student_profile"),
     url(r'^add_attendance/$', views.add_attendance, name="add_attendance"),
+    url(r'^add_attendance/(?P<id>[0-9]+)', views.add_attendance_sem, name="add_attendance_sem"),
     url(r'^today_attendance/$', views.today_attendance, name="today_attendance"),
     url(r'^view_attendance/$', views.view_attendance, name="view_attendance"),
     url(r'^day_attendance/(?P<attendance_date>.*)/$', views.day_attendance, name="day_attendance"),
