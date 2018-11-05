@@ -2,10 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from home.models import *
-from .models import *
+#from .models import *
+from home.models import *
 from django.contrib import messages
 from home.templatetags import *
 # Create your views here.
+from django.apps import apps
 
 def add_attendance(request):
     # return HttpResponse("shubahm")
@@ -13,18 +15,24 @@ def add_attendance(request):
     faculty_data = Facultys.objects.get(pk=sessn_val)
     sectn_data = Sections.objects.get(name=faculty_data.section)
     print("****** section_data ********")
-    print(faculty_data)
-    sem1 = Semester_1.objects.all()
-    # sem2 = Semester_2.objects.get(professerr_name = faculty_data.username)
+    print(faculty_data.section)
+    semester_1_model = apps.get_model('home.Semester_1')
+    sem1 = semester_1_model.objects.all() 
+
+    for obj in sem1:
+        print(obj.professer_name)
+
+    # sem2 = Semester_2.objescts.get(professerr_name = faculty_data.username)
     # sem3 = Semester_3.objects.get(professerr_name = faculty_data.username)
     # sem4 = Semester_4.objects.get(professerr_name = faculty_data.username)
     # sem5 = Semester_5.objects.get(professerr_name = faculty_data.username)
     # sem6 = Semester_6.objects.get(professerr_name = faculty_data.username)
-    # sem7 = Semester_7.objects.get(professerr_name = faculty_data.username)
+    # sem7 = Semester_7.objectsemester_1_models.get(professerr_name = faculty_data.username)
     # sem8 = Semester_8.objects.get(professerr_name = faculty_data.username)
     # print(sem1)
     # for i in sem1:
-    #     print(i.professerr_name)
+    #     # if i.professerr_name == Sections.name
+    #     print(i.professerr_name.name)
     content = { 'data': faculty_data, 'sectn_data': sectn_data }
     return render(request, 'dashboard/add_attendance.html', content)
 
