@@ -18,14 +18,14 @@ class Facultys(models.Model):
     section = models.ForeignKey(Sections, on_delete=models.CASCADE, default=0)
     creation_date = models.DateTimeField('date published', default=datetime.now)
 
-    # def __str__(self):
-    #     # dat = self.name + self.email + self.section +" " +self.section
-    #     return self.username
+    def __str__(self):
+        # dat = self.name + self.email + self.section +" " +self.section
+        return self.username
 
 class Semester_1(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201,unique=True)
-    # professerr_name =models.ForeignKey(Sections, on_delete=models.CASCADE, default=0)
+    professer_name = models.OneToOneField(Facultys)
 
 class Students(models.Model):
     name = models.CharField(max_length=200)
