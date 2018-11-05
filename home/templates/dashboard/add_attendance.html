@@ -1,7 +1,94 @@
 {%  extends "home/main_dashboard.html" %}
 
 {% block dashboard %}
+<h1>{{sem1.subject_name}}</h1>
+{% for i in sem1 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:add_attendance_sem' 1 %}>link</a>
+	</div>
+	<hr/>
+{% endfor %}
+{% comment %} 
+{% for i in sem1 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	</div>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	<hr/>
 
+{% endfor %}
+
+{% for i in sem2 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	</div>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem3 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem4 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem5 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem6 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	</div>
+	<hr/>
+{% endfor %}
+
+{% for i in sem6 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem7 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem8 %}
+	<div class='container'>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:add_attendance_sem' i.subject_code %}>link</a>
+	</div>
+{% endfor %} {% endcomment %}
+
+{% comment %} 
 <form method="post" action="{% url 'attendance:today_attendance' %}">
 {% csrf_token %}
 	<table class="table">
@@ -26,6 +113,6 @@
 	<input type="hidden" name="section" value="{{ sectn_data.pk }}" >
 	<input type="hidden" name="total_studnt" value="{{ sectn_data.students_set.all.count }}" >
 	<input type="submit" value="Add Attendance" class="btn btn-primary" name="attendance">
-</form>
+</form> {% endcomment %}
 
 {% endblock %}

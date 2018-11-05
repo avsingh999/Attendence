@@ -16,25 +16,56 @@ def add_attendance(request):
     sectn_data = Sections.objects.get(name=faculty_data.section)
     print("****** section_data ********")
     print(faculty_data.section)
+
     semester_1_model = apps.get_model('home.Semester_1')
-    sem1 = semester_1_model.objects.all() 
+    sem1 = semester_1_model.objects.all()
 
     for obj in sem1:
         print(obj.professer_name)
+        if(obj.professer_name == 'aag001'):
+            print("****** aa gya ****")
 
-    # sem2 = Semester_2.objescts.get(professerr_name = faculty_data.username)
-    # sem3 = Semester_3.objects.get(professerr_name = faculty_data.username)
-    # sem4 = Semester_4.objects.get(professerr_name = faculty_data.username)
-    # sem5 = Semester_5.objects.get(professerr_name = faculty_data.username)
-    # sem6 = Semester_6.objects.get(professerr_name = faculty_data.username)
-    # sem7 = Semester_7.objectsemester_1_models.get(professerr_name = faculty_data.username)
-    # sem8 = Semester_8.objects.get(professerr_name = faculty_data.username)
-    # print(sem1)
-    # for i in sem1:
-    #     # if i.professerr_name == Sections.name
-    #     print(i.professerr_name.name)
-    content = { 'data': faculty_data, 'sectn_data': sectn_data }
+    semester_2_model = apps.get_model('home.Semester_2')
+    sem2 = semester_2_model.objects.all()
+    for obj in sem2:
+        print(type(str(obj.professer_name)))
+        if(str(obj.professer_name) == 'aag001'):
+            print("****** aa gya ****")
+    
+    semester_3_model = apps.get_model('home.Semester_3')
+    sem3 = semester_3_model.objects.all()
+    for obj in sem3:
+        print(obj.professer_name)
+
+    semester_4_model = apps.get_model('home.Semester_4')
+    sem4 = semester_4_model.objects.all()
+    for obj in sem4:
+        print(obj.professer_name)
+
+    semester_5_model = apps.get_model('home.Semester_5')
+    sem5 = semester_5_model.objects.all()
+    for obj in sem5:
+        print(obj.professer_name)
+
+    semester_6_model = apps.get_model('home.Semester_6')
+    sem6 = semester_6_model.objects.all()
+    for obj in sem6:
+        print(obj.professer_name)
+
+    semester_7_model = apps.get_model('home.Semester_7')
+    sem7 = semester_7_model.objects.all()
+    for obj in sem7:
+        print(obj.professer_name)
+
+    semester_8_model = apps.get_model('home.Semester_8')
+    sem8 = semester_8_model.objects.all()
+    for obj in sem8:
+        print(obj.professer_name)
+    content = { 'data': faculty_data, 'sem1':sem1, 'sem2':sem2, 'sem3':sem3,'sem4':sem4,'sem5':sem5,'sem6':sem6,'sem7':sem7,'sem8':sem8}
     return render(request, 'dashboard/add_attendance.html', content)
+    
+def add_attendance_sem(request):
+    return HttpResponse("IIII")
 
 def today_attendance(request):
     if request.method == 'POST':
