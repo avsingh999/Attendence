@@ -1,39 +1,93 @@
 {%  extends "home/main_dashboard.html" %}
 
 {% block dashboard %}
-{% load custom_tags %}
-<table class="table table-stripped table-bordered">
-{% if  'faculty' in request.session %}
-	<thead>
-		<tr>
-			<th>S No.</th>
-			<th>Student Name</th>
-			<th>Total attendance</th>
-		</tr>
-	</thead> 
-	<tbody>
-		{% for attendance in attendance_data  %}
-		<tr>
-			<td>{{ forloop.counter }}</td>
-			<td><a href="{% url 'attendance:day_attendance' attendance.attendance_date %}">{{ attendance.attendance_date }}</a></td>  <!-- attendance.attendance_date -->
-			<!--{% for student in section_data.students_set.all %}-->
-			<!--<td>{{ student.name }}</td>-->
-            <!--{% with attendance.student|split:"," as attndnc %}-->
-            <!--{% with student.pk|int_to_str as studnt_id %}-->
-            <!--<td>{{ attndnc }}</td>-->
-			<!--{% if studnt_id in attndnc %}-->
-			<!--<td>{{ ' Present ' }}</td>-->
-			<!--{% else %}-->
-			<!--<td>{{ ' Absent ' }}</td>-->
-			<!--{% endif %}-->
-            <!--{% endwith %}-->
-            <!--{% endwith %}-->
-			<!--{% endfor %}-->
-			<td>total</td>
-		</tr>
-		{% endfor %}
-	</tbody>
-{% endif %}
-	
-</table>
+
+{% for i in sem1 %}
+	<!-- {{ value|stringformat:"i" }} -->
+	<h2>Sem 1</h2>
+	<div class='container'>
+
+	<h1>{{i.subject_name}}</h1>
+	<strong>{{i.professer_name}}</strong>
+
+	</div>
+	<a href={% url 'attendance:view_attendance_sem' 1 i.subject_code %}>link</a>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem2 %}
+	<h2>Sem 2</h2>
+	<div class='container'>
+	<strong>{{data.username}}</strong>
+	<h1>{{i.subject_name}}</h1>
+	<strong>{{i.professer_name}}</strong>
+	</div>
+	<a href={% url 'attendance:view_attendance_sem' 2 i.subject_code %}>link</a>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem3 %}
+	<h2>Sem 3</h2>
+	<div class='container'>
+	<strong>{{data.username}}</strong>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:view_attendance_sem' 3 i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem4 %}
+	<h2>Sem 4</h2>
+	<div class='container'>
+	<strong>{{data.username}}</strong>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:view_attendance_sem' 4 i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem5 %}
+	<h2>Sem 5</h2>
+	<div class='container'>
+	<strong>{{data.username}}</strong>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:view_attendance_sem' 5 i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem6 %}
+	<h2>Sem 6</h2>
+	<div class='container'>
+	<strong>{{data.username}}</strong>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:view_attendance_sem' 6 i.subject_code %}>link</a>
+	</div>
+	<hr/>
+{% endfor %}
+
+{% for i in sem7 %}
+	<h2>Sem 7</h2>
+	<div class='container'>
+	<strong>{{data.username}}</strong>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:view_attendance_sem' 7 i.subject_code %}>link</a>
+	</div>
+	<hr/>
+
+{% endfor %}
+
+{% for i in sem8 %}
+	<h2>Sem 8</h2>
+	<div class='container'>
+	<strong>{{data.username}}</strong>
+	<h1>{{i.subject_name}}</h1>
+	<a href={% url 'attendance:view_attendance_sem' 8 i.subject_code %}>link</a>
+	</div>
+{% endfor %}
 {% endblock %}

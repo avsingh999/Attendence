@@ -8,7 +8,7 @@ from django.views import generic
 import datetime
 from django.core.serializers.json import DjangoJSONEncoder
 # Create your views here.
-
+ 
 def index(request):
     if request.method == 'POST':
         try:
@@ -66,7 +66,6 @@ def dashboard_faculty(request):
         sessn_val = request.session['faculty']
         faculty_data = Facultys.objects.get(pk=sessn_val)
         student_data = Students.objects.all().filter(sem=1)
-        print("***************** student by semester ******************")
         print(sessn_val)
         print(student_data)
         # sectn_data = Sections.objects.get(name=faculty_data.section)
@@ -75,6 +74,8 @@ def dashboard_faculty(request):
     elif 'student' in request.session:
         sessn_val = request.session['student']
         student_data = Students.objects.get(pk=sessn_val)
+        print("***************** student by semester ******************")
+        print(student_data.sem)
         sectn_data = Sections.objects.get(name=student_data.section)
         content = {'data': student_data, 'sectn_data': sectn_data}
         return render(request, 'home/student_info.html', content)

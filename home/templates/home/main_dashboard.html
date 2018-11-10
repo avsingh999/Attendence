@@ -33,7 +33,7 @@
 				{% elif 'student' in request.session %}
 				<p class="sidebr_elemnt"><a href="{% url 'home:dashboard' %}">View Details</a></p>
 				<p class="sidebr_elemnt"><a href="{% url 'attendance:view_attendance' %}">View Attendance</a></p>
-				<p class="sidebr_elemnt"><a href="{% url 'attendance:view_messages' %}">View Messages</a></p>
+				
 				{% endif %}
 			</div>
 		</div>

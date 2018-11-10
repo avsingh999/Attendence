@@ -8,8 +8,9 @@
 	{% for i  in student_subject %}
 		<div class="shadow-sm p-3 mb-5 bg-white rounded" style="margin: 10px;">
 			<div class="card " >
-				<div class="card-body" onclick="location.href = 'https://www.youtube.com';" >
+				<div class="card-body" >
 					{{i.subject_name}} - {{i.subject_code}}
+					<a href={% url 'attendance:view_my_attendance_sem' student_data.roll_no i.subject_code %} > view </a>
 				</div>
 			</div>
 		</div>

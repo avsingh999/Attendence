@@ -1,0 +1,59 @@
+{%  extends "home/main_dashboard.html" %}
+
+{% block dashboard %}
+
+<!-- {% with i=1 %} -->
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>S No.</th>
+			<!--<th>View</th>-->
+			<th>Name</th>
+			<th>Univ Roll No.</th>
+			<th>Phone No.</th>
+			<th>E-mail</th>		
+		</tr>
+	</thead>
+	<tbody>
+		{% for stu in students %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<!--<td><a target="_blank" href="{% url 'attendance:student_profile' students.slug %}"><small><i class="fa fa-eye" aria-hidden="true"></i></small></a></td>-->
+			<td class="studnt_nme"><a target="_blank" href="{% url 'attendance:student_profile' students.slug %}"><small><i class="fa fa-eye" aria-hidden="true"></i> View Profile</small><span>{{ stu.name }}</span></a></td>
+			<td>{{ stu.roll_no }}</td>
+			<td>{{ stu.phone }}</td>
+			<td>{{ stu.email }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<form method="post" action="{% url 'attendance:todays_add_attendance' proff semester sub date %}">
+{% csrf_token %}
+	<table class="table">
+		<thead> 
+			<tr>
+				<th>S No.</th>
+				<th>Name</th>
+				<th>RollNo.</th>
+				<th class="text-center" colspan="2">Attendance</th>	
+			</tr>
+		</thead>
+		<tbody>		
+			{% for stu in students %}
+			<tr>
+				<td>{{ stu.roll_no }}</td>
+				<td>{{ stu.name }}</td>
+				<td><label class="add_student_attendance"><input class="add_student_ckbx" type="checkbox" name="present[]" value="{{ stu.roll_no }}" >&nbsp; <span>Absent</span></label></td>
+				<!-- <td><label><input type="radio" name="attendance{{ students.id }}" value="0" required="">&nbsp; Absent</label></td> -->
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<input type="hidden" name="section" value="{{ sectn_data.pk }}" >
+	<input type="hidden" name="total_studnt" value="{{ sectn_data.students_set.all.count }}" >
+	<input type="submit" value="Add Attendance" class="btn btn-primary" name="attendance">
+</form>
+<!-- {% endwith %} -->
+{% endblock %}

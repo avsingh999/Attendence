@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from home.models import *
@@ -8,6 +8,39 @@ from django.contrib import messages
 from home.templatetags import *
 # Create your views here.
 from django.apps import apps
+import datetime
+ 
+
+def todays_add_attendance(request,prof,semester,sub,date):
+    total_students = request.POST['total_studnt']
+    present_students = request.POST.getlist('present[]')
+    Facultys_model = apps.get_model('home.Facultys')
+    proffeser = Facultys_model.objects.all().filter(username=prof)
+
+    Students_list_model = apps.get_model('home.Students')
+    students_list = Students_list_model.objects.all().filter(sem=semester)
+    print("************************* ")
+    print(proffeser[0])
+    for i in students_list:
+        Students_model = apps.get_model('home.Students')
+        add_student_attendance_model = apps.get_model('home.add_student_attendance')
+        add__attendance_model = add_student_attendance_model()
+        add__attendance_model.professer_name = proffeser[0]
+        add__attendance_model.student_name = i
+        add__attendance_model.semester = semester
+        add__attendance_model.subject = sub
+        add__attendance_model.batch = 'cs'
+        add__attendance_model.date = date
+        if i.roll_no in present_students:
+            add__attendance_model.attend = 1
+        else:
+            add__attendance_model.attend = 0
+        add__attendance_model.save()      
+    # print(request.POST.getlist('present[]'))
+    # print(prof,semester,sub,date)
+    messages.success(request, 'Attendance Added Successfully.')
+    reder = '/add_attendance/sem'+str(semester)+'/'+sub
+    return HttpResponseRedirect(reder)
 
 def add_attendance(request):
     # return HttpResponse("shubahm")
@@ -15,57 +48,161 @@ def add_attendance(request):
     faculty_data = Facultys.objects.get(pk=sessn_val)
     sectn_data = Sections.objects.get(name=faculty_data.section)
     print("****** section_data ********")
-    print(faculty_data.section)
+    print(sectn_data)
 
     semester_1_model = apps.get_model('home.Semester_1')
-    sem1 = semester_1_model.objects.all()
-
+    sem1 = semester_1_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem1:
-        print(obj.professer_name)
-        if(obj.professer_name == 'aag001'):
-            print("****** aa gya ****")
+        print(obj)
+        
 
-    semester_2_model = apps.get_model('home.Semester_2')
-    sem2 = semester_2_model.objects.all()
+    semester_2_model = apps.get_model('home.Semester_2') 
+    sem2 = semester_2_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem2:
-        print(type(str(obj.professer_name)))
+        print(type((obj.professer_name)))
         if(str(obj.professer_name) == 'aag001'):
             print("****** aa gya ****")
     
     semester_3_model = apps.get_model('home.Semester_3')
-    sem3 = semester_3_model.objects.all()
+    sem3 = semester_3_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem3:
         print(obj.professer_name)
 
     semester_4_model = apps.get_model('home.Semester_4')
-    sem4 = semester_4_model.objects.all()
+    sem4 = semester_4_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem4:
         print(obj.professer_name)
 
     semester_5_model = apps.get_model('home.Semester_5')
-    sem5 = semester_5_model.objects.all()
+    sem5 = semester_5_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem5:
         print(obj.professer_name)
 
     semester_6_model = apps.get_model('home.Semester_6')
-    sem6 = semester_6_model.objects.all()
+    sem6 = semester_6_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem6:
         print(obj.professer_name)
 
     semester_7_model = apps.get_model('home.Semester_7')
-    sem7 = semester_7_model.objects.all()
+    sem7 = semester_7_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem7:
         print(obj.professer_name)
 
     semester_8_model = apps.get_model('home.Semester_8')
-    sem8 = semester_8_model.objects.all()
+    sem8 = semester_8_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem8:
         print(obj.professer_name)
-    content = { 'data': faculty_data, 'sem1':sem1, 'sem2':sem2, 'sem3':sem3,'sem4':sem4,'sem5':sem5,'sem6':sem6,'sem7':sem7,'sem8':sem8}
+
+    
+    content = { 'data': faculty_data, 'sem1':sem1, 'sem2':sem2, 'value': 10, 'sem3':sem3,'sem4':sem4,'sem5':sem5,'sem6':sem6,'sem7':sem7,'sem8':sem8}
     return render(request, 'dashboard/add_attendance.html', content)
     
-def add_attendance_sem(request):
-    return HttpResponse("IIII")
+def add_attendance_sem_1(request,id):
+
+    student_model = apps.get_model('home.Students')
+    students = student_model.objects.all().filter(sem=1)
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    print("***************sem 1 student*************")
+    print(faculty_data.username)
+    for i in students:
+        print(i)
+    return render(request, 'dashboard/add_stud_attendance.html', {'students':students, 'sub':id, "semester":1,'date':date, 'proff':faculty_data.username})
+
+
+    # return HttpResponse("IIII 1")
+def add_attendance_sem_2(request,id):
+    student_model = apps.get_model('home.Students')
+    students = student_model.objects.all().filter(sem=2) 
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    print("***************sem 1 student*************")
+    print(faculty_data.username)
+    for i in students:
+        print(i)
+    return render(request, 'dashboard/add_stud_attendance.html', {'students':students, 'sub':id, "semester":2,'date':date, 'proff':faculty_data.username})
+
+def add_attendance_sem_3(request,id):
+    student_model = apps.get_model('home.Students')
+    students = student_model.objects.all().filter(sem=3) 
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    print("***************sem 1 student*************")
+    print(faculty_data.username)
+    for i in students:
+        print(i)
+    return render(request, 'dashboard/add_stud_attendance.html', {'students':students, 'sub':id, "semester":3,'date':date, 'proff':faculty_data.username})
+
+def add_attendance_sem_4(request,id):
+    student_model = apps.get_model('home.Students')
+    students = student_model.objects.all().filter(sem=4) 
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    print("***************sem 1 student*************")
+    print(faculty_data.username)
+    for i in students:
+        print(i)
+    return render(request, 'dashboard/add_stud_attendance.html', {'students':students, 'sub':id, "semester":4,'date':date, 'proff':faculty_data.username})
+
+def add_attendance_sem_5(request,id):
+    student_model = apps.get_model('home.Students')
+    students = student_model.objects.all().filter(sem=5) 
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    print("***************sem 1 student*************")
+    print(faculty_data.username)
+    for i in students:
+        print(i)
+    return render(request, 'dashboard/add_stud_attendance.html', {'students':students, 'sub':id, "semester":5,'date':date, 'proff':faculty_data.username})
+
+def add_attendance_sem_6(request,id):
+    student_model = apps.get_model('home.Students')
+    students = student_model.objects.all().filter(sem=6) 
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    print("***************sem 1 student*************")
+    print(faculty_data.username)
+    for i in students:
+        print(i)
+    return render(request, 'dashboard/add_stud_attendance.html', {'students':students, 'sub':id, "semester":6,'date':date, 'proff':faculty_data.username})
+
+def add_attendance_sem_7(request,id):
+    student_model = apps.get_model('home.Students')
+    students = student_model.objects.all().filter(sem=7) 
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    print("***************sem 1 student*************")
+    print(faculty_data.username)
+    for i in students:
+        print(i)
+    return render(request, 'dashboard/add_stud_attendance.html', {'students':students, 'sub':id, "semester":7,'date':date, 'proff':faculty_data.username})
+
+def add_attendance_sem_8(request,id):
+    student_model = apps.get_model('home.Students')
+    students = student_model.objects.all().filter(sem=8) 
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    date = datetime.datetime.today().strftime('%Y-%m-%d')
+    print("***************sem 1 student*************")
+    print(faculty_data.username)
+    for i in students:
+        print(i)
+    return render(request, 'dashboard/add_stud_attendance.html', {'students':students, 'sub':id, "semester":8,'date':date, 'proff':faculty_data.username})
 
 def today_attendance(request):
     if request.method == 'POST':
@@ -86,10 +223,59 @@ def today_attendance(request):
 
 def view_attendance(request):
     if 'faculty' in request.session:
-        faculty_data = Facultys.objects.get(pk = request.session['faculty'])
-        section = Sections.objects.get(name=faculty_data.section)
-        attendance_data = daily_attendance.objects.filter(faculty = faculty_data.pk, section = section.pk )
-        content = {  'data': faculty_data, 'attendance_data' : attendance_data, 'section_data': section }
+        sessn_val = request.session['faculty']
+        faculty_data = Facultys.objects.get(pk=sessn_val)
+        sectn_data = Sections.objects.get(name=faculty_data.section)
+        print("****** section_data ********")
+        print(sectn_data)
+
+        semester_1_model = apps.get_model('home.Semester_1')
+        sem1 = semester_1_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem1:
+            print(obj)
+            
+
+        semester_2_model = apps.get_model('home.Semester_2') 
+        sem2 = semester_2_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem2:
+            print(type((obj.professer_name)))
+            if(str(obj.professer_name) == 'aag001'):
+                print("****** aa gya ****")
+        
+        semester_3_model = apps.get_model('home.Semester_3')
+        sem3 = semester_3_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem3:
+            print(obj.professer_name)
+
+        semester_4_model = apps.get_model('home.Semester_4')
+        sem4 = semester_4_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem4:
+            print(obj.professer_name)
+
+        semester_5_model = apps.get_model('home.Semester_5')
+        sem5 = semester_5_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem5:
+            print(obj.professer_name)
+
+        semester_6_model = apps.get_model('home.Semester_6')
+        sem6 = semester_6_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem6:
+            print(obj.professer_name)
+
+        semester_7_model = apps.get_model('home.Semester_7')
+        sem7 = semester_7_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem7:
+            print(obj.professer_name)
+
+        semester_8_model = apps.get_model('home.Semester_8')
+        sem8 = semester_8_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem8:
+            print(obj.professer_name)
+
+        
+        content = { 'data': faculty_data, 'sem1':sem1, 'sem2':sem2, 'value': 10, 'sem3':sem3,'sem4':sem4,'sem5':sem5,'sem6':sem6,'sem7':sem7,'sem8':sem8}
+        # return render(request, 'dashboard/view_attendance_semadd_attendance.html', content)
+
         return render(request, 'home/view_attendance.html', content)
     elif 'student' in request.session:
         student_data = Students.objects.get(pk=request.session['student'])
@@ -137,10 +323,27 @@ def view_attendance(request):
                 print(i.subject_code)
 
         section = Sections.objects.get(name=student_data.section)
-        attendance_data = daily_attendance.objects.filter(section = section.pk )
-        content = { 'attendance_data' : attendance_data, 'student_data': student_data, 'data':student_data , 'student_subject':student_subject}
+        # attendance_data = daily_attendance.objects.filter(section = section.pk )
+        content = {'student_data': student_data, 'data':student_data , 'student_subject':student_subject}
     return render(request, 'home/view_attendance_studnt.html', content)
     # return render(request, 'dashboard/add_attendance.html')
+def view_attendance_sem(request,sem,sub):
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+
+    add_student_attendance_model = apps.get_model('home.add_student_attendance')
+    attendance_of_student = add_student_attendance_model.objects.all().filter(semester=sem,subject=sub)
+
+    print("****** come ***************")
+
+    return HttpResponse('hello')
+
+def view_my_attendance_sem(request,roll,sub):
+    student_data = Students.objects.get(pk=request.session['student'])
+    add_student_attendance_model = apps.get_model('home.add_student_attendance')
+    attendance_of_student = add_student_attendance_model.objects.all().filter(student_name=student_data,subject=sub)
+    return HttpResponse('hello')
+
 
 def day_attendance(request, attendance_date):
     # return HttpResponse(attendance_date)
