@@ -3,7 +3,6 @@ from django.template.defaultfilters import slugify
 from datetime import datetime
 from datetime import date
 # Create your models here.
-
 class Sections(models.Model):
     name = models.CharField(max_length = 200, unique=True)
     creation_date = models.DateTimeField('date published', default=datetime.now)
@@ -11,12 +10,13 @@ class Sections(models.Model):
     def __str__(self):
         return self.name
 
+class UploadStudent(models.Model):
+    image = models.FileField(upload_to='upload_location',)
 class Facultys(models.Model):
     name = models.CharField(max_length = 200)
     username = models.CharField(max_length = 200, unique=True, default="aag001")
     email = models.EmailField(max_length = 100)
     password = models.CharField(max_length = 200)
-    section = models.ForeignKey(Sections, on_delete=models.CASCADE, default=0)
     creation_date = models.DateTimeField('date published', default=datetime.now)
 
     def __str__(self):
@@ -25,7 +25,8 @@ class Facultys(models.Model):
 
 class Semester_1(models.Model):
     subject_name = models.CharField(max_length=201)
-    subject_code = models.CharField(max_length=201,unique=True)
+    subject_code = models.CharField(max_length=201)
+    section = models.CharField(max_length=201)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
 
     # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
@@ -35,11 +36,12 @@ class Students(models.Model):
     roll_no = models.CharField(max_length=200)
     email = models.EmailField(max_length = 100)
     password = models.CharField(max_length = 200, default='student')
+
     phone = models.IntegerField(default = 1)
     mother_name = models.CharField(max_length=201)
     gender = models.IntegerField()
     sem = models.IntegerField()
-    section = models.ForeignKey(Sections, on_delete=models.CASCADE, default=0)
+    section = models.CharField(max_length=201)
     slug = models.SlugField(max_length=251, default="1")
     creation_date = models.DateTimeField('date published', default=datetime.now)
 
@@ -55,6 +57,7 @@ class Semester_2(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
+    section = models.CharField(max_length=201)
 
     # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default='aag001')
     def __str__(self):
@@ -64,20 +67,21 @@ class Semester_3(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
-    # professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
+    section = models.CharField(max_length=201)
     def __str__(self):
         return self.subject_code
 
 class Semester_4(models.Model):
     subject_name = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
+    section = models.CharField(max_length=201)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
         
 class Semester_5(models.Model):
     subject_name = models.CharField(max_length=201)
+    section = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
     # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
@@ -86,6 +90,7 @@ class Semester_5(models.Model):
         
 class Semester_6(models.Model):
     subject_name = models.CharField(max_length=201)
+    section = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
     # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
@@ -94,6 +99,7 @@ class Semester_6(models.Model):
         
 class Semester_7(models.Model):
     subject_name = models.CharField(max_length=201)
+    section = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
     # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
@@ -102,6 +108,7 @@ class Semester_7(models.Model):
         
 class Semester_8(models.Model):
     subject_name = models.CharField(max_length=201)
+    section = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
     # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)

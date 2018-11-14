@@ -1,0 +1,33 @@
+{%  extends "home/header.html" %}
+
+{% block dashboard %}
+
+<!-- <p class="add_stdnt"><a href="javascript:void(0)" class="add_new_student btn btn-default">Add Student</a></p> -->
+
+<!-- {% with i=1 %} -->
+<div class="container" style="padding: 1rem;">
+
+<table class="table table-hover bg-light bg-light text-dark">
+	<thead>
+		<tr>
+			<th>S No.</th>
+			<th>Name</th>
+			<th>Univ Roll No.</th>
+			<th>E-mail</th>							
+		</tr>
+	</thead>
+	<tbody>
+		{% for student in students %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<!--<td><a target="_blank" href="{% url 'attendance:student_profile' students.slug %}"><small><i class="fa fa-eye" aria-hidden="true"></i></small></a></td>-->
+			<td class="studnt_nme"><span>{{ student.name }}</span></td>
+			<td>{{ student.roll_no }}</td>
+			<td>{{ student.email }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+<!-- {% endwith %} -->
+{% endblock %}

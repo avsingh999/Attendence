@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 from django.contrib import messages
+from django.apps import apps
+
 from django.views import generic
 import datetime
 from django.core.serializers.json import DjangoJSONEncoder
@@ -60,26 +62,118 @@ def student_login(request):
             return HttpResponseRedirect(reverse('home:index'))
     else:
         return render(request, 'home/login.html')
-
+ 
 def dashboard_faculty(request):
     if 'faculty' in request.session:
         sessn_val = request.session['faculty']
         faculty_data = Facultys.objects.get(pk=sessn_val)
         student_data = Students.objects.all().filter(sem=1)
-        print(sessn_val)
-        print(student_data)
-        # sectn_data = Sections.objects.get(name=faculty_data.section)
         content = {'data': faculty_data, 'sectn_data': student_data}
-        return render(request, 'home/view_students.html', content)
+
+        semester_1_model = apps.get_model('home.Semester_1')
+        sem1 = semester_1_model.objects.all().filter(professer_name=faculty_data)
+        print("********* dashboard *********")
+        for obj in sem1:
+            print(obj.section)
+        print("********* dashboard *********")
+
+
+        semester_2_model = apps.get_model('home.Semester_2') 
+        sem2 = semester_2_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem2:
+            print(type((obj.professer_name)))
+
+        semester_3_model = apps.get_model('home.Semester_3')
+        sem3 = semester_3_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem3:
+            print(obj.professer_name)
+
+        semester_4_model = apps.get_model('home.Semester_4')
+        sem4 = semester_4_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem4:
+            print(obj.professer_name)
+
+        semester_5_model = apps.get_model('home.Semester_5')
+        sem5 = semester_5_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem5:
+            print(obj.professer_name)
+
+        semester_6_model = apps.get_model('home.Semester_6')
+        sem6 = semester_6_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem6:
+            print(obj.professer_name)
+
+        semester_7_model = apps.get_model('home.Semester_7')
+        sem7 = semester_7_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem7:
+            print(obj.professer_name)
+
+        semester_8_model = apps.get_model('home.Semester_8')
+        sem8 = semester_8_model.objects.all().filter(professer_name=faculty_data)
+        for obj in sem8:
+            print(obj.professer_name)
+
+        semesters = [sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8]
+        date = datetime.datetime.today().strftime('%Y-%m-%d')
+
+
+        content = { 'data': faculty_data,'date':date, 'sem1':sem1, 'sem2':sem2, 'value': 10, 'sem3':sem3,'sem4':sem4,'sem5':sem5,'sem6':sem6,'sem7':sem7,'sem8':sem8,'sems':semesters}
+        return render(request, 'dashboard/dashboard.html', content)
+
+        # return render(request, 'home/view_students.html', content)
+
+
+
+
     elif 'student' in request.session:
-        sessn_val = request.session['student']
-        student_data = Students.objects.get(pk=sessn_val)
-        print("***************** student by semester ******************")
-        print(student_data.sem)
-        sectn_data = Sections.objects.get(name=student_data.section)
-        content = {'data': student_data, 'sectn_data': sectn_data}
-        return render(request, 'home/student_info.html', content)
-        # return HttpResponse(sectn_data)
+        student_data = Students.objects.get(pk=request.session['student'])
+        s = str("Semester_"+str(student_data.sem))
+        student_subject = list()
+        if(s == ("Semester_1")):
+            print("***********************")
+            student_subject = Semester_1.objects.all()
+            for i in student_subject:
+                print(i.subject_code)
+        elif(s == ("Semester_2")):
+            print("***********************")
+            student_subject = Semester_1.objects.all()
+            for i in student_subject:
+                print(i.subject_code)
+        elif(s == ("Semester_3")):
+            print("***********************")
+            student_subject = Semester_1.objects.all()
+            for i in student_subject:
+                print(i.subject_code)
+        elif(s == ("Semester_4")):
+            print("***********************")
+            student_subject = Semester_1.objects.all()
+            for i in student_subject:
+                print(i.subject_code)
+        elif(s == ("Semester_5")):
+            print("***********************")
+            student_subject = Semester_1.objects.all()
+            for i in student_subject:
+                print(i.subject_code)
+        elif(s == ("Semester_6")):
+            print("***********************")
+            student_subject = Semester_1.objects.all()
+            for i in student_subject:
+                print(i.subject_code)
+        elif(s == ("Semester_7")):
+            print("***********************")
+            student_subject = Semester_1.objects.all()
+            for i in student_subject:
+                print(i.subject_code)
+        elif(s == ("Semester_8")):
+            print("***********************")
+            student_subject = Semester_1.objects.all()
+            for i in student_subject:
+                print(i.subject_code)
+
+        section = Sections.objects.get(name=student_data.section)
+        # attendance_data = daily_attendance.objects.filter(section = section.pk )
+        content = {'student_data': student_data, 'data':student_data , 'student_subject':student_subject}
+        return render(request, 'home/view_attendance_studnt.html', content)        # return HttpResponse(sectn_data)
 
 def add_student(request):
     content={}

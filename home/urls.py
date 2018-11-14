@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'home'
 urlpatterns = [
@@ -26,3 +28,7 @@ urlpatterns = [
     url(r'^add_student/$', views.add_student, name="add_student"),
     # url(r'^login_check/$', views.login_check, name="login_check"),
 ]
+
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

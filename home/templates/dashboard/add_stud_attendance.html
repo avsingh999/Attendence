@@ -1,51 +1,36 @@
-{%  extends "home/main_dashboard.html" %}
+{%  extends "home/header.html" %}
 
 {% block dashboard %}
 
+<div class="container" style="padding: 1rem;">
 <!-- {% with i=1 %} -->
-
-<table class="table">
-	<thead>
-		<tr>
-			<th>S No.</th>
-			<!--<th>View</th>-->
-			<th>Name</th>
-			<th>Univ Roll No.</th>
-			<th>Phone No.</th>
-			<th>E-mail</th>		
-		</tr>
-	</thead>
-	<tbody>
-		{% for stu in students %}
-		<tr>
-			<td>{{ forloop.counter }}</td>
-			<!--<td><a target="_blank" href="{% url 'attendance:student_profile' students.slug %}"><small><i class="fa fa-eye" aria-hidden="true"></i></small></a></td>-->
-			<td class="studnt_nme"><a target="_blank" href="{% url 'attendance:student_profile' students.slug %}"><small><i class="fa fa-eye" aria-hidden="true"></i> View Profile</small><span>{{ stu.name }}</span></a></td>
-			<td>{{ stu.roll_no }}</td>
-			<td>{{ stu.phone }}</td>
-			<td>{{ stu.email }}</td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
-
-<form method="post" action="{% url 'attendance:todays_add_attendance' proff semester sub date %}">
+<form method="post" action="{% url 'attendance:todays_add_attendance' proff semester programe sub date %}">
 {% csrf_token %}
-	<table class="table">
+<table class="table table-hover bg-light bg-light text-dark">
 		<thead> 
 			<tr>
 				<th>S No.</th>
 				<th>Name</th>
 				<th>RollNo.</th>
-				<th class="text-center" colspan="2">Attendance</th>	
+				<th>Attendance</th>	
 			</tr>
 		</thead>
 		<tbody>		
 			{% for stu in students %}
 			<tr>
-				<td>{{ stu.roll_no }}</td>
+				<td>{{ forloop.counter }}</td>
 				<td>{{ stu.name }}</td>
-				<td><label class="add_student_attendance"><input class="add_student_ckbx" type="checkbox" name="present[]" value="{{ stu.roll_no }}" >&nbsp; <span>Absent</span></label></td>
+				<td>{{ stu.roll_no }}</td>
+<!-- 
+				<td><label class="add_student_attendance"><input type="checkbox" name="present[]" value="{{ stu.roll_no }}" >&nbsp; </td> -->
+				<td>
+					<div class="input-group-prepend">
+					 <select class="custom-select" id="inputGroupSelect01" name="present[]">
+					  <option value="{{ stu.roll_no }}">Present</option>
+					  <option value="">Absent</option>
+					</select>
+				</div>
+				</td>
 				<!-- <td><label><input type="radio" name="attendance{{ students.id }}" value="0" required="">&nbsp; Absent</label></td> -->
 			</tr>
 			{% endfor %}
@@ -56,4 +41,5 @@
 	<input type="submit" value="Add Attendance" class="btn btn-primary" name="attendance">
 </form>
 <!-- {% endwith %} -->
+</div>
 {% endblock %}

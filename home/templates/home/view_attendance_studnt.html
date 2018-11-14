@@ -1,48 +1,32 @@
-{%  extends "home/main_dashboard.html" %}
+{%  extends "home/header.html" %}
 
 {% block dashboard %}
-{% load custom_tags %}
-<table CLASS="table table-stripped table-hover">
+<!-- {% load custom_tags %} -->
 
 {% if 'student' in request.session %}
+<div class="row">
 	{% for i  in student_subject %}
-		<div class="shadow-sm p-3 mb-5 bg-white rounded" style="margin: 10px;">
-			<div class="card " >
-				<div class="card-body" >
-					{{i.subject_name}} - {{i.subject_code}}
-					<a href={% url 'attendance:view_my_attendance_sem' student_data.roll_no i.subject_code %} > view </a>
-				</div>
-			</div>
-		</div>
-		<br/>
-		<br/>
-		<hr/>
-		
-	{% endfor %}
-	<!-- <thead>
-		<tr>
-			<th>Date</th>
-			<th>Status</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for attendance in attendance_data  %}
-		<tr>
-			<td>{{ attendance.attendance_date }}</td>
-			{% with attendance.student|split:"," as attndnc %}
-			{% with student_data.pk|int_to_str as studnt_id %}
-			{% if studnt_id in attndnc %}
-			<td><span  style="background-color: rgb(163, 228, 163)">{{ ' Present ' }}</span></td>
-			{% else %}
-			<td>{{ ' Absent ' }}</td>
-			{% endif %}
-			{% endwith %}
-			{% endwith %}
+		<div class="shadow p-3 mb-5 bg-white rounded" style="width: 18rem; margin: 2rem;">
+			<div class="card" >
+				<div style="padding:1rem;" class="bg-dark text-white">
 
-		</tr>
-		{% endfor %}
-	</tbody> -->
+				<h5 class="card-title">{{data.name}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}
+				</h6>
+				<h6 class="card-subtitle mb-2 "> {{i.subject_code}}</h6>
+				</div>
+				<div class="card-body">
+
+					<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:view_my_attendance_sem' data.roll_no  data.sem i.subject_code %}">View Attendance</a></p>
+
+				</div>
+					
+			</div>
+			</div>
+	{% endfor %}
+</div>
+
 {% endif %}
 
-</table>
 {% endblock %}

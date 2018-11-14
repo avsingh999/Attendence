@@ -1,0 +1,206 @@
+{%  extends "home/header.html" %}
+
+{% block dashboard %}
+
+<div class= "row">
+     
+	{% for i in sem1 %}
+		<!-- {{ value|stringformat:"i" }} -->
+	<div class=" shadow p-3 mb-5 bg-white rounded"  style="width: 18rem; margin: 2rem;">
+		<div class="card">
+				<div style="padding:1rem;" class="bg-dark text-white">
+				<h5 class="card-title">Semester 1  - {{i.section}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}</h6>
+				<h6  class="card-subtitle mb-2 text-uppercase"> {{i.subject_code}}</h6>
+
+				</div>
+				<!-- <hr/> -->
+			<div class="card-body" >
+
+				<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:student_list' 1 i.section i.subject_code %}">View Students</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:today_attendance' i.professer_name 1 i.section i.subject_code date %}">Today's Attendance</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:faculty_view_attendence' 1 i.section  i.subject_code %}">View Attendance</a></p>		
+				</div>
+		</div>
+	</div>
+
+
+	{% endfor %}
+
+	{% for i in sem2 %}
+		<!-- {{ value|stringformat:"i" }} -->
+		<div class=" shadow p-3 mb-5 bg-white rounded"  style="width: 18rem; margin: 2rem;">
+		<div class="card">
+				<div style="padding:1rem;" class="bg-dark text-white">
+				<h5 class="card-title">Semester 2  - {{i.section}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}</h6>
+				<h6  class="card-subtitle mb-2 text-uppercase"> {{i.subject_code}}</h6>
+
+				</div>
+				<!-- <hr/> -->
+			<div class="card-body" >
+
+				<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:student_list' 2 i.section i.subject_code %}">View Students</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:today_attendance' i.professer_name 2 i.section i.subject_code date %}">Today's Attendance</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:faculty_view_attendence' 2 i.section  i.subject_code %}">View Attendance</a></p>		
+				</div>
+		</div>
+	</div>
+
+
+	{% endfor %}
+
+	{% for i in sem3 %}
+		<!-- {{ value|stringformat:"i" }} -->
+		<div class=" shadow p-3 mb-5 bg-white rounded"  style="width: 18rem; margin: 2rem;">
+		<div class="card">
+				<div style="padding:1rem;" class="bg-dark text-white">
+				<h5 class="card-title">Semester 3  - {{i.section}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}</h6>
+				<h6  class="card-subtitle mb-2 text-uppercase"> {{i.subject_code}}</h6>
+
+				</div>
+				<!-- <hr/> -->
+			<div class="card-body" >
+
+				<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:student_list' 3 i.section i.subject_code %}">View Students</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:today_attendance' i.professer_name 3 i.section i.subject_code date %}">Today's Attendance</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:faculty_view_attendence' 3 i.section  i.subject_code %}">View Attendance</a></p>		
+				</div>
+		</div>
+	</div>
+
+
+
+	{% endfor %}
+
+	{% for i in sem4 %}
+		<!-- {{ value|stringformat:"i" }} -->
+		<div class=" shadow p-3 mb-5 bg-white rounded"  style="width: 18rem; margin: 2rem;">
+		<div class="card">
+				<div style="padding:1rem;" class="bg-dark text-white">
+				<h5 class="card-title">Semester 4  - {{i.section}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}</h6>
+				<h6  class="card-subtitle mb-2 text-uppercase"> {{i.subject_code}}</h6>
+
+				</div>
+				<!-- <hr/> -->
+			<div class="card-body" >
+
+				<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:student_list' 4 i.section i.subject_code %}">View Students</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:today_attendance' i.professer_name 4 i.section i.subject_code date %}">Today's Attendance</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:faculty_view_attendence' 4 i.section  i.subject_code %}">View Attendance</a></p>		
+				</div>
+		</div>
+	</div>
+
+
+	{% endfor %}
+	{% for i in sem5 %}
+		<!-- {{ value|stringformat:"i" }} -->
+	<div class=" shadow p-3 mb-5 bg-white rounded"  style="width: 18rem; margin: 2rem;">
+		<div class="card">
+				<div style="padding:1rem;" class="bg-dark text-white">
+				<h5 class="card-title">Semester 5  - {{i.section}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}</h6>
+				<h6  class="card-subtitle mb-2 text-uppercase"> {{i.subject_code}}</h6>
+
+				</div>
+				<!-- <hr/> -->
+			<div class="card-body" >
+
+				<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:student_list' 5 i.section i.subject_code %}">View Students</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:today_attendance' i.professer_name 5 i.section i.subject_code date %}">Today's Attendance</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:faculty_view_attendence' 5 i.section  i.subject_code %}">View Attendance</a></p>		
+				</div>
+		</div>
+	</div>
+
+
+
+	{% endfor %}
+	{% for i in sem6 %}
+		<!-- {{ value|stringformat:"i" }} -->
+			<div class=" shadow p-3 mb-5 bg-white rounded"  style="width: 18rem; margin: 2rem;">
+		<div class="card">
+				<div style="padding:1rem;" class="bg-dark text-white">
+				<h5 class="card-title">Semester 6  - {{i.section}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}</h6>
+				<h6  class="card-subtitle mb-2 text-uppercase"> {{i.subject_code}}</h6>
+
+				</div>
+				<!-- <hr/> -->
+			<div class="card-body" >
+
+				<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:student_list' 6 i.section i.subject_code %}">View Students</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:today_attendance' i.professer_name 6 i.section i.subject_code date %}">Today's Attendance</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:faculty_view_attendence' 6 i.section  i.subject_code %}">View Attendance</a></p>		
+				</div>
+		</div>
+	</div>
+
+
+
+
+	{% endfor %}
+	{% for i in sem7 %}
+		<!-- {{ value|stringformat:"i" }} -->
+			<div class=" shadow p-3 mb-5 bg-white rounded"  style="width: 18rem; margin: 2rem;">
+		<div class="card">
+				<div style="padding:1rem;" class="bg-dark text-white">
+				<h5 class="card-title">Semester 7  - {{i.section}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}</h6>
+				<h6  class="card-subtitle mb-2 text-uppercase"> {{i.subject_code}}</h6>
+
+				</div>
+				<!-- <hr/> -->
+			<div class="card-body" >
+
+				<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:student_list' 7 i.section i.subject_code %}">View Students</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:today_attendance' i.professer_name 7 i.section i.subject_code date %}">Today's Attendance</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:faculty_view_attendence' 7 i.section  i.subject_code %}">View Attendance</a></p>		
+				</div>
+		</div>
+	</div>
+
+
+
+
+	{% endfor %}
+	{% for i in sem8 %}
+		<!-- {{ value|stringformat:"i" }} -->
+		<div class=" shadow p-3 mb-5 bg-white rounded"  style="width: 18rem; margin: 2rem;">
+		<div class="card">
+				<div style="padding:1rem;" class="bg-dark text-white">
+				<h5 class="card-title">Semester 8  - {{i.section}}</h5>
+				<h6 class="card-subtitle mb-2 ">{{i.subject_name}}</h6>
+				<h6  class="card-subtitle mb-2 text-uppercase"> {{i.subject_code}}</h6>
+
+				</div>
+				<!-- <hr/> -->
+			<div class="card-body" >
+
+				<p class="card-text"><strong>{{i.professer_name}}</strong></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:student_list' 8 i.section i.subject_code %}">View Students</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:today_attendance' i.professer_name 8 i.section i.subject_code date %}">Today's Attendance</a></p>
+					<p class="sidebr_elemnt"><a href="{% url 'attendance:faculty_view_attendence' 8 i.section  i.subject_code %}">View Attendance</a></p>		
+				</div>
+		</div>
+	</div>
+
+
+
+
+	{% endfor %}
+
+
+</div>
+
+{% endblock %}
