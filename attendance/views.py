@@ -240,9 +240,36 @@ def faculty_view_attendence(request, sem, prog, sub):
         print("***************************")
         print(l)
         l_student.append(l)
-    return render(request, 'dashboard/view_student_attendance.html',{'l_student':l_student})
+    return render(request, 'dashboard/view_student_attendance.html',{'l_student':l_student,'prof':faculty_data.username,'sem':sem, 'prog':prog, 'sub':sub})
 
 
+def faculty_search_view_attendence(request, sem, prog, sub):
+    present_students = request.POST.getlist('present[]')
+    print("***************************************************")
+    print(present_students)
+    select_value = int(present_students[0])
+    sessn_val = request.session['faculty']
+    faculty_data = Facultys.objects.get(pk=sessn_val)
+    student_attendance_model = apps.get_model('home.add_student_attendance')
+    # print("****** come ***************")
+    Students_list_model = apps.get_model('home.Students')
+    students_list = Students_list_model.objects.all().filter(sem=sem,section=prog)
+    l_student = list()
+    for i in students_list:
+        l = list()
+        student_attendance_model = apps.get_model('home.add_student_attendance')
+        student_present = student_attendance_model.objects.all().filter(semester=sem, student_name = i, subject=sub,attend=1)
+        student_absent = student_attendance_model.objects.all().filter(semester=sem, student_name = i, subject=sub,attend=0)
+        total = len(student_present) + len(student_absent)
+        if(len(student_present)/total<select_value):
+            l.append(i.name)
+            l.append(i.roll_no)
+            l.append(len(student_present))
+            l.append(len(student_absent))
+            print("***************************")
+            print(l)
+            l_student.append(l)
+    return render(request, 'dashboard/view_student_attendance.html',{'l_student':l_student,'prof':faculty_data.username,'sem':sem, 'prog':prog, 'sub':sub})
 
 def view_my_attendance_sem(request,roll,sem,sub):
     student_data = Students.objects.get(pk=request.session['student'])

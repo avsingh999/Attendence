@@ -22,6 +22,7 @@ urlpatterns = [
      url(r'^student_profile/(?P<slug>.*)/$', views.student_profile, name="student_profile"),
      url(r'^add_attendance/$', views.add_attendance, name="add_attendance"),
      path('view-attendence/<int:sem>/<str:prog>/<str:sub>', views.faculty_view_attendence, name="faculty_view_attendence"),
+     path('search-view-attendence/<int:sem>/<str:prog>/<str:sub>', views.faculty_search_view_attendence, name="faculty_search_view_attendence"),
      path('student_list/<int:sem>/<str:prog>/<str:sub>', views.student_list, name = "student_list"),
 
      path('today-attendance/<str:prof>/<int:semester>/<str:prog>/<str:sub>/<str:date>', views.today_attendance, name="today_attendance"),

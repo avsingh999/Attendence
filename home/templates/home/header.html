@@ -32,7 +32,8 @@
             <li  class="nav-item active"><a class="nav-link" href="{% url 'home:logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i>  Logout</a></li>
             {% endif %}
     </ul>
-           
+           {% block searching %}
+           {% endblock %}
                 <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
   </div>
 </nav>
