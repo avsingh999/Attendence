@@ -131,42 +131,42 @@ def dashboard_faculty(request):
         student_subject = list()
         if(s == ("Semester_1")):
             print("***********************")
-            student_subject = Semester_1.objects.all()
+            student_subject = Semester_1.objects.all().filter(section=student_data.section)
             for i in student_subject:
                 print(i.subject_code)
         elif(s == ("Semester_2")):
             print("***********************")
-            student_subject = Semester_1.objects.all()
+            student_subject = Semester_1.objects.all().filter(section=student_data.section)
             for i in student_subject:
                 print(i.subject_code)
         elif(s == ("Semester_3")):
             print("***********************")
-            student_subject = Semester_1.objects.all()
+            student_subject = Semester_1.objects.all().filter(section=student_data.section)
             for i in student_subject:
                 print(i.subject_code)
         elif(s == ("Semester_4")):
             print("***********************")
-            student_subject = Semester_1.objects.all()
+            student_subject = Semester_1.objects.all().filter(section=student_data.section)
             for i in student_subject:
                 print(i.subject_code)
         elif(s == ("Semester_5")):
             print("***********************")
-            student_subject = Semester_1.objects.all()
+            student_subject = Semester_1.objects.all().filter(section=student_data.section)
             for i in student_subject:
                 print(i.subject_code)
         elif(s == ("Semester_6")):
             print("***********************")
-            student_subject = Semester_1.objects.all()
+            student_subject = Semester_1.objects.all().filter(section=student_data.section)
             for i in student_subject:
                 print(i.subject_code)
         elif(s == ("Semester_7")):
             print("***********************")
-            student_subject = Semester_1.objects.all()
+            student_subject = Semester_1.objects.all().filter(section=student_data.section)
             for i in student_subject:
                 print(i.subject_code)
         elif(s == ("Semester_8")):
             print("***********************")
-            student_subject = Semester_1.objects.all()
+            student_subject = Semester_1.objects.all().filter(section=student_data.section)
             for i in student_subject:
                 print(i.subject_code)
 

@@ -2,7 +2,10 @@
 
 {% block content %}
 
-<div class="text-center" style="margin: 10rem;padding: 1rem;">
+<div class="text-center" style="margin: 2rem;padding: 1rem;">
+<div class="text-center">
+  <img style="width:30%;margin:3rem;" src="http://iiitvadodara.ac.in/img/New-Logo.png" class="circle" alt="...">
+</div>
 	<h2>Welcome to Attendance Management System</h2>
 	{% if 'faculty' in request.session %}
 	<h3><a class=" btn btn-warning" href="{% url 'home:dashboard' %}">Dashboard</a></h3>
@@ -66,7 +69,7 @@
 		    <input type="text" id="stdnt_logn_rollno" class="form-control" name="univ_rlno">
 		  </div>
 		  <div class="form-group">
-		    <label for="email">DOB:</label>
+		    <label for="email">Password:</label>
 		    <input type="password" id="stdnt_logn_name" name="name" class="form-control">
 		  </div>
 		  <div class="checkbox">
