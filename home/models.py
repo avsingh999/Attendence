@@ -20,7 +20,6 @@ class Facultys(models.Model):
     creation_date = models.DateTimeField('date published', default=datetime.now)
 
     def __str__(self):
-        # dat = self.name + self.email + self.section +" " +self.section
         return self.username
 
 class Semester_1(models.Model):
@@ -28,8 +27,6 @@ class Semester_1(models.Model):
     subject_code = models.CharField(max_length=201)
     section = models.CharField(max_length=201)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
-
-    # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
  
 class Students(models.Model):
     name = models.CharField(max_length=200)
@@ -59,7 +56,6 @@ class Semester_2(models.Model):
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
     section = models.CharField(max_length=201)
 
-    # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default='aag001')
     def __str__(self):
         return self.subject_code
 
@@ -83,7 +79,6 @@ class Semester_5(models.Model):
     subject_name = models.CharField(max_length=201)
     section = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
@@ -92,7 +87,6 @@ class Semester_6(models.Model):
     subject_name = models.CharField(max_length=201)
     section = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
@@ -101,7 +95,6 @@ class Semester_7(models.Model):
     subject_name = models.CharField(max_length=201)
     section = models.CharField(max_length=201)
     subject_code = models.CharField(max_length=201)
-    # professer_name = models.OneToOneField(Facultys,on_delete=models.CASCADE, default=0)
     professer_name = models.ForeignKey(Facultys, on_delete=models.CASCADE, default=0)
     def __str__(self):
         return self.subject_code
