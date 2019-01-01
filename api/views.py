@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
-from .serializers import FacultysSerializer,StudentsSerializer
-from home.models import Facultys,Students
+from .serializers import FacultysSerializer,StudentsSerializer,AttendancesSerializer
+from home.models import Facultys,Students,add_student_attendance
 # Create your views here.
 
 class FacultysViewSet(ModelViewSet):
@@ -11,3 +11,7 @@ class FacultysViewSet(ModelViewSet):
 class StudentsViewSet(ModelViewSet):
 	queryset = Students.objects.all()
 	serializer_class = StudentsSerializer
+
+class AttendancesViewSet(ModelViewSet):
+	queryset = add_student_attendance.objects.all()
+	serializer_class = AttendancesSerializer
