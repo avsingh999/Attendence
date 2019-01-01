@@ -4,7 +4,7 @@
 
 {% if error_note %} <p>{{ error_note }}</p>{% endif %}
 {% if 'faculty' not in request.session %}
-<form method="post" action="{% url 'home:login' %}">
+<form method="post" action="{% url 'home:student_login' %}">
     {% csrf_token %}
     <label>
         E-mail: <input type="text" name="email"  class="form-control" >

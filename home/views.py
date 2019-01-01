@@ -37,7 +37,7 @@ def index(request):
 def student_login(request):
     if request.method == 'POST':
         try:
-            studnt_data = Students.objects.get(roll_no = request.POST['univ_rlno'])
+            studnt_data = Students.objects.get(roll_no = request.POST.get('univ_rlno'))
             if studnt_data:
                 if studnt_data.password == request.POST['name']:
                     request.session['student'] = studnt_data.pk
@@ -66,31 +66,31 @@ def dashboard_faculty(request):
         semester_2_model = apps.get_model('home.Semester_2') 
         sem2 = semester_2_model.objects.all().filter(professer_name=faculty_data)
         for obj in sem2:
-
+            pass
         semester_3_model = apps.get_model('home.Semester_3')
         sem3 = semester_3_model.objects.all().filter(professer_name=faculty_data)
         for obj in sem3:
-
+            pass
         semester_4_model = apps.get_model('home.Semester_4')
         sem4 = semester_4_model.objects.all().filter(professer_name=faculty_data)
         for obj in sem4:
-
+            pass
         semester_5_model = apps.get_model('home.Semester_5')
         sem5 = semester_5_model.objects.all().filter(professer_name=faculty_data)
         for obj in sem5:
-
+            pass
         semester_6_model = apps.get_model('home.Semester_6')
         sem6 = semester_6_model.objects.all().filter(professer_name=faculty_data)
         for obj in sem6:
-
+            pass
         semester_7_model = apps.get_model('home.Semester_7')
         sem7 = semester_7_model.objects.all().filter(professer_name=faculty_data)
         for obj in sem7:
-
+            pass
         semester_8_model = apps.get_model('home.Semester_8')
         sem8 = semester_8_model.objects.all().filter(professer_name=faculty_data)
         for obj in sem8:
-
+            pass
         semesters = [sem1,sem2,sem3,sem4,sem5,sem6,sem7,sem8]
         date = datetime.datetime.today().strftime('%Y-%m-%d')
 

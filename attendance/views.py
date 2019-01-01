@@ -47,7 +47,7 @@ def add_attendance(request):
     semester_2_model = apps.get_model('home.Semester_2') 
     sem2 = semester_2_model.objects.all().filter(professer_name=faculty_data)
     for obj in sem2:
-
+        pass
     
     semester_3_model = apps.get_model('home.Semester_3')
     sem3 = semester_3_model.objects.all().filter(professer_name=faculty_data)
@@ -66,7 +66,7 @@ def add_attendance(request):
 
     semester_7_model = apps.get_model('home.Semester_7')
     sem7 = semester_7_model.objects.all().filter(professer_name=faculty_data)
-)
+
 
     semester_8_model = apps.get_model('home.Semester_8')
     sem8 = semester_8_model.objects.all().filter(professer_name=faculty_data)
