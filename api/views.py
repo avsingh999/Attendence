@@ -8,3 +8,6 @@ class FacultysViewSet(ModelViewSet):
 	queryset = Facultys.objects.all()
 	serializer_class = FacultysSerializer
 
+class StudentsViewSet(ModelViewSet):
+	queryset = Students.objects.all()
+	serializer_class = StudentsSerializer
