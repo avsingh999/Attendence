@@ -6,3 +6,9 @@ class FacultysSerializer(serializers.HyperlinkedModelSerializer):
 		model = Facultys
 		exclude = []
 
+
+class StudentsSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Students
+		exclude = []
+
