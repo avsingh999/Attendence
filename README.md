@@ -9,12 +9,11 @@
 This is simple attendece web app where student can see attendence and teacher can take attendence easily
 
 
- ```
  
  ### Run
   
  ```
-virtualenv env
+ virtualenv env
  source env/bin/activate
  pip3 install -r requirements.txt
  python3 manage.py makemigrations
